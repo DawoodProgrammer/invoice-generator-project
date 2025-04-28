@@ -1,0 +1,172 @@
+ :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --background: #f5f7fa;
+        }
+
+        body {
+            background: var(--background);
+            font-family: 'Poppins', sans-serif;
+            padding: 1rem;
+        }
+
+        .invoice-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .invoice-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            color: white;
+            position: relative;
+        }
+
+        .invoice-header h1 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .invoice-details {
+            background: white;
+            padding: 2rem;
+        }
+
+        .company-logo {
+            max-width: 150px;
+            margin-bottom: 1rem;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status-paid { background: var(--success); color: white; }
+        .status-pending { background: var(--accent); color: white; }
+        .status-unpaid { background: var(--danger); color: white; }
+
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .table thead {
+            background: var(--primary);
+            color: white;
+        }
+
+        .table th, .table td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .total-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.3);
+            color: white;
+        }
+
+        .watermark {
+            opacity: 0.1;
+            position: fixed;
+            bottom: 20%;
+            right: 10%;
+            transform: rotate(-45deg);
+            font-size: 5rem;
+            color: var(--primary);
+            pointer-events: none;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            body { padding: 0.5rem; }
+            .invoice-header { padding: 1.5rem; }
+            .invoice-details { padding: 1.5rem; }
+            .company-logo { width: 80px; height: 80px; }
+            .table th, .table td { padding: 0.75rem; font-size: 0.9rem; }
+            .status-badge { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+            .btn-download { padding: 0.6rem 1.5rem; margin: 0.5rem; display: inline-block; width: auto; }
+            .form-select { width: 120px !important; }
+        }
+
+        @media screen and (max-width: 576px) {
+            .invoice-header h1 { font-size: 1.5rem; }
+            .invoice-header h4 { font-size: 1.2rem; }
+            .table { font-size: 0.8rem; }
+            .table th, .table td { padding: 0.5rem; }
+            .total-section { padding: 1rem; }
+            .company-logo { width: 60px; height: 60px; }
+            .watermark { font-size: 3rem; }
+        }
+
+        /* Table responsive styles */
+        @media screen and (max-width: 480px) {
+            .table thead { display: none; }
+            .table tbody tr { display: block; margin-bottom: 1rem; border: 1px solid #dee2e6; }
+            .table tbody td { display: block; text-align: right; padding: 0.5rem; border: none; }
+            .table tbody td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+            }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .invoice-container { box-shadow: none; margin: 0; }
+            .btn-download { display: none; }
+            .watermark { display: block !important; }
+        }
